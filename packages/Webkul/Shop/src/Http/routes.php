@@ -2,8 +2,13 @@
 
 Route::group(['middleware' => ['web', 'theme', 'locale', 'currency']], function () {
 
+    //Store welcome
+    Route::get('/', 'Webkul\Shop\Http\Controllers\HomeController@welcome')->defaults('_config', [
+        'view' => 'shop::home.welcome'
+    ])->name('shop.home.welcome');
+
     //Store front home
-    Route::get('/', 'Webkul\Shop\Http\Controllers\HomeController@index')->defaults('_config', [
+    Route::get('/shop', 'Webkul\Shop\Http\Controllers\HomeController@index')->defaults('_config', [
         'view' => 'shop::home.index'
     ])->name('shop.home.index');
 

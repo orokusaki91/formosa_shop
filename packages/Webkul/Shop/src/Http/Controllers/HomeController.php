@@ -29,6 +29,18 @@ use Webkul\Core\Repositories\SliderRepository as Sliders;
     /**
      * loads the home page for the storefront
      */
+    public function welcome()
+    {
+        $current_channel = core()->getCurrentChannel();
+
+        $all_sliders = $this->sliders->findWhere(['channel_id' => $current_channel['id']]);
+
+        return view($this->_config['view'])->with('sliderData', $all_sliders->toArray());
+    }
+
+    /**
+     * loads the home page for the storefront
+     */
     public function index()
     {
         $current_channel = core()->getCurrentChannel();
